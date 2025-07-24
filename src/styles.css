@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Custom text color */
+.text-green {
+  color: #00A651;
+  margin: 42px 0px 42px 0px;
+line-height: auto;
+}
