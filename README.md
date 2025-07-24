@@ -25,3 +25,64 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## primeng installation
+
+-I have used primeng v16 to match with my angular version 16 using : npm install primeng@16 primeicons
+-imported necessary files in angular.json:
+"styles": [
+"node_modules/primeicons/primeicons.css",
+"node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+"node_modules/primeng/resources/primeng.min.css",
+"src/styles.css"
+]
+
+## primeng usage
+
+-I have used primeng for tables and icons
+
+## bootstrap installation
+
+-installed bootstrap library using:
+-npm install bootstrap
+-added bootstrap to angular.json under styles array
+"styles": [
+"node_modules/bootstrap/dist/css/bootstrap.min.css",
+"node_modules/primeicons/primeicons.css",
+"node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+"node_modules/primeng/resources/primeng.min.css",
+"src/styles.css"
+]
+
+## Mobile-First vs. Responsive Web App
+
+-Since M-Pesa is primarily mobile-driven, we’ll prioritize a mobile-first approach, but design it as a Progressive Web App (PWA) to cover all bases:
+
+## Why PWA?
+
+Works offline (caches receipts).
+
+Installable on Android/iPhones like a native app.
+
+Easier to maintain than separate iOS/Android codebases.
+
+## Set Up Angular PWA
+
+installed using: ng add @angular/pwa
+
+## auth component is the launch screen
+
+const routes: Routes = [
+{path:'',component:AuthComponent}
+];
+
+-Set Up App Component (app.component.html):
+Replace the default content with <router-outlet> to render routed components:
+
+<!-- app.component.html -->
+
+<router-outlet></router-outlet>
+
+## auth app default container
+
+Our default .container class is a responsive, fixed-width container, meaning its max-width changes at each breakpoint.
