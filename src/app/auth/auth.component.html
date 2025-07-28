@@ -1,9 +1,12 @@
 <div class="container">
-  <div class="content-container">
+  <button (click)="toggleTheme()" class="theme-toggle">
+    {{ isDarkMode ? "☀️" : "🌙" }}
+  </button>
+  <div class="d-block" *ngIf="!isDarkMode">
     <div class="logo-section" style="margin-bottom: 42px">
       <img
         alt="M Receipts Logo"
-        src="assets/images/receipt.png "
+        src="assets/images/receipt.png"
         class="logo"
         style="margin-top: 124px"
       />
@@ -39,7 +42,55 @@
     >
       Sign Up
     </button>
-    <button (click)="navigateToLogin()" class="btn btn-primary">click</button>
+
+    <div class="footer">
+      <p class="text-center fw-light font-poppin mt-5">Made with ❤️ in Kenya</p>
+    </div>
+  </div>
+
+  <!-- dark mode theme code -->
+
+  <div class="d-block" *ngIf="isDarkMode">
+    <div class="logo-section" style="margin-bottom: 42px">
+      <img
+        alt="M Receipts Logo"
+        src="assets/images/receipt.png"
+        class="logo"
+        style="margin-top: 124px"
+      />
+    </div>
+    <div class="text-center fw-normal text-align-center fs-3 font-poppins">
+      M Receipts
+    </div>
+    <div class="text-center fs-6 text-green">
+      Your Mpesa Transactions, Organized
+    </div>
+
+    <button
+      (click)="navigateToLogin()"
+      class="btn btn-success w-100 fw-bold"
+      style="
+        border-radius: 5px;
+        background-color: #00a651;
+        margin: auto;
+        margin-bottom: 42px;
+      "
+    >
+      Sign In
+    </button>
+    <button
+      class="btn btn-success w-100 fw-bold"
+      style="
+        border-radius: 5px;
+        background-color: transparent;
+        margin: auto;
+        color: #0d47a1;
+        margin-bottom: 42px;
+      "
+    >
+      Sign
+    </button>
+
     <div class="footer">
       <p class="text-center fw-light font-poppin mt-5">Made with ❤️ in Kenya</p>
     </div>
