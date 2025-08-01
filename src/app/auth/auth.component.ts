@@ -13,18 +13,20 @@ export class AuthComponent {
    
   }
 ngOnInit(){
-   // Initialize theme from storage
+    // Detect system preference
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const savedMode = this.sessionStorage.getItem('darkMode');
-    this.isDarkMode = savedMode === 'true';
- 
+    
+    this.isDarkMode = savedMode ? savedMode === 'true' : systemPrefersDark;
 }
 toggleTheme():void{
-  this.isDarkMode = !this.isDarkMode; // Toggle current state
-this.isDarkMode=true;// No need to stringify a simple string
- this.sessionStorage.setItem('dark', JSON.stringify(true)); 
-    this.sessionStorage.setItem('name', 'frank'); 
+  this.isDarkMode = !this.isDarkMode;
+    this.sessionStorage.setItem('darkMode', String(this.isDarkMode));
+  
+
 
 }
+
 navigateToLogin():void{
    this.toggleTheme(); // Ensure theme is saved before navigation
 this.router.navigate(['/login']);
