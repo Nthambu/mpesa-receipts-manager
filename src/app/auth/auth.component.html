@@ -1,14 +1,15 @@
-<div class="container">
-  <button (click)="toggleTheme()" class="theme-toggle">
-    {{ isDarkMode ? "☀️" : "🌙" }}
-  </button>
-  <div class="d-block" *ngIf="!isDarkMode">
+<div class="container" [class.darkClass]="isDarkMode">
+  <label class="switch">
+    <input type="checkbox" (change)="toggleTheme()" [checked]="isDarkMode" />
+    <span class="slider round"></span>
+  </label>
+  <div class="d-block position">
     <div class="logo-section" style="margin-bottom: 42px">
       <img
         alt="M Receipts Logo"
         src="assets/images/receipt.png"
         class="logo"
-        style="margin-top: 124px"
+        style="margin-top: 35px"
       />
     </div>
     <div class="text-center fw-normal text-align-center fs-3 font-poppins">
@@ -47,22 +48,29 @@
       <p class="text-center fw-light font-poppin mt-5">Made with ❤️ in Kenya</p>
     </div>
   </div>
+</div>
 
-  <!-- dark mode theme code -->
-
-  <div class="d-block" *ngIf="isDarkMode">
-    <div class="logo-section" style="margin-bottom: 42px">
+<!-- dark mode theme code -->
+<!-- <div class="container darkClass" *ngIf="isDarkMode">
+  <div class="d-block darkTheme"> -->
+<!-- <label class="switch">
+      <input type="checkbox" (click)="setDarkMode()" [checked]="!isDarkMode" />
+      <span class="slider round"></span>
+    </label> -->
+<!-- <div class="logo-section" style="margin-bottom: 42px">
       <img
         alt="M Receipts Logo"
         src="assets/images/receipt.png"
         class="logo"
-        style="margin-top: 124px"
+        style="margin-top: 35px"
       />
     </div>
-    <div class="text-center fw-normal text-align-center fs-3 font-poppins">
+    <div
+      class="text-center fw-normal text-align-center fs-3 font-poppinsn color"
+    >
       M Receipts
     </div>
-    <div class="text-center fs-6 text-green">
+    <div class="text-center fs-6 text-green color">
       Your Mpesa Transactions, Organized
     </div>
 
@@ -82,17 +90,19 @@
       class="btn btn-success w-100 fw-bold"
       style="
         border-radius: 5px;
-        background-color: transparent;
+        background-color: #7a7a73;
         margin: auto;
-        color: #0d47a1;
+        color: #ffffff;
         margin-bottom: 42px;
       "
     >
-      Sign
+      Sign Up
     </button>
 
     <div class="footer">
-      <p class="text-center fw-light font-poppin mt-5">Made with ❤️ in Kenya</p>
+      <p class="text-center fw-light font-poppin mt-5 color">
+        Made with ❤️ in Kenya
+      </p>
     </div>
   </div>
-</div>
+</div> -->
