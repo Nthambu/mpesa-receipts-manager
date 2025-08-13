@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="d-block position">
+    <div class="log-section">
+      <img [alt]="alternative" [src]="imageSrc" class="logo" />
+    </div>
+    <form [formGroup]="loginForm">
+      <div class="form-group">
+        <p class="text-center fw-bold fs-3 font-poppins textClass">
+          Login To Your Account
+        </p>
+      </div>
+
+      <!-- Phone Input Field -->
+      <div class="phone-input-container">
+        <div
+          class="country-selector"
+          (click)="showCountryList = !showCountryList"
+        >
+          <span [innerHTML]="selectedCountry.flag"></span>
+          <span class="dial-code">{{ selectedCountry.dialCode }}</span>
+        </div>
+
+        <input
+          class="form-control input-bg"
+          type="tel"
+          formControlName="phone"
+          [placeholder]="
+            selectedCountry.code === 'ke' ? '712 345 678' : 'Enter phone number'
+          "
+          (input)="formatPhone($event)"
+          [maxLength]="selectedCountry.code === 'ke' ? 9 : 10"
+        />
+      </div>
+
+      <!-- Country List (shown on flag click) -->
+      <div class="country-list" *ngIf="showCountryList">
+        <div
+          *ngFor="let country of countries"
+          (click)="selectCountry(country)"
+          class="country-option"
+        >
+          <span [innerHTML]="country.flag"></span>
+          <span class="country-name">{{ country.name }}</span>
+          <span class="dial-code">{{ country.dialCode }}</span>
+        </div>
+      </div>
+
+      <!-- Password Input -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control input-bg"
+          id="password"
+          placeholder="Password"
+          formControlName="password"
+          required
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary loginbtn fw-bold w-100 mt-3"
+        (click)="checkForm()"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</div>

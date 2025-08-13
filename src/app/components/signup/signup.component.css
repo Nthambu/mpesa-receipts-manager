@@ -1,0 +1,10 @@
+.signup{
+    display: flexbox;
+    flex:center;
+}
+img{
+    width:10%;
+    margin:auto;
+    display: block;
+    
+}
