@@ -96,3 +96,16 @@ Replace the default content with <router-outlet> to render routed components:
 ## auth app default container
 
 Our default .container class is a responsive, fixed-width container, meaning its max-width changes at each breakpoint.
+
+## east african flags
+
+installed the country flags library and used the svbg string for each flag as to load the flags in country service files
+--commands used: npm install country-flags
+
+## Angular forms
+
+--For this form to use Angular features that enable
+data binding to forms, you'll need to import the FormsModule.
+
+-The FormsModule has a directive called ngModel that binds
+the value of the input to a property in your class.

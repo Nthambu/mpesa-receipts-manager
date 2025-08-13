@@ -1,0 +1,126 @@
+<div class="container">
+  <div class="d-block position">
+    <div class="logo-section pt-3">
+      <img alt="logo" [src]="imgSrc" />
+    </div>
+    <div class="text fw-semibold text-center font-poppins pt-3">Sign Up</div>
+    <form [formGroup]="signupForm">
+      <div class="formClass">
+        <div class="text text-center font-poppins fw-bold mt-3 mb-3">
+          Create Your Account
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            ><span class="text-danger fw-bold" *ngIf="showbtn">*</span> Full
+            Name</label
+          >
+          <span class="required" *ngIf="showbtn"></span>
+          <input
+            type="text"
+            class="form-control input-bg"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            formControlName="fullName"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone Number</label>
+          <!-- the click event here set the values of the boolean showCountryList
+        to either true or false -->
+          <div class="phone-input-container">
+            <div
+              class="country-selector align-items-center justify-content-center"
+              (click)="showCountryList = !showCountryList"
+            >
+              <span [innerHTML]="selectedCountry.flag"></span>
+              <span class="dial-code">{{ selectedCountry.dialCode }}</span>
+            </div>
+
+            <input
+              class="form-control input-bg"
+              type="tel"
+              formControlName="phone"
+              [placeholder]="
+                selectedCountry.code === 'ke' ? 712345678 : 'Enter Phone Number'
+              "
+              (input)="formatPhone($event)"
+              [maxlength]="selectedCountry.code === 'ke' ? 9 : 10"
+            />
+          </div>
+          <!-- Country List/dropdown (shown on flag click) when showCountryList is false -->
+          <!-- <div class="country-list" *ngIf="showCountryList">
+            <div
+              class="country-option"
+              *ngFor="let country of countries"
+              (click)="selectCountry(country)"
+            >
+              <span [innerHTML]="country.flag"></span>
+              <span class="country-name">{{ country.name }}</span>
+              <span class="dial-code" formControlName="countryCode">{{
+                country.dialCode
+              }}</span>
+            </div>
+          </div>
+        </div> -->
+          <!-- Country List (shown on flag click) -->
+          <div class="country-list" *ngIf="showCountryList">
+            <div
+              *ngFor="let country of countries"
+              (click)="selectCountry(country)"
+              class="country-option"
+            >
+              <span [innerHTML]="country.flag"></span>
+              <span class="country-name">{{ country.name }}</span>
+              <span class="dial-code">{{ country.dialCode }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control input-bg"
+            id="exampleInputPassword1"
+            formControlName="password"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword2" class="form-label"
+            >Confirm Password</label
+          >
+          <input
+            type="password"
+            class="form-control input-bg"
+            id="exampleInputPassword2"
+            formControlName="confirmPassword"
+            required
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              !signupForm.value.confirmPassword.valid && signupForm.touched
+            "
+          >
+            password is required
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary loginbtn"
+          (click)="validateForm()"
+        >
+          Sign Up
+        </button>
+        <p>Fullname: {{ signupForm.value.fullName }}</p>
+        <p>phone: {{ signupForm.value.phone }}</p>
+        <p>password: {{ signupForm.value.password }}</p>
+        <p>confirmPassword: {{ signupForm.value.confirmPassword }}</p>
+      </div>
+    </form>
+  </div>
+</div>

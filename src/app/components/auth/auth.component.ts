@@ -1,6 +1,7 @@
+import { SessionStorageService } from './../../services/session-storage.service';
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
-import {SessionStorageService} from '../services/session-storage.service';
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -31,5 +32,9 @@ navigateToLogin():void{
    this.toggleTheme(); // Ensure theme is saved before navigation
 this.router.navigate(['/login']);
 
+}
+navigateToSignUp():void{
+  this.toggleTheme(); // Ensure theme is saved before navigation
+  this.router.navigate(['/signup']);
 }
 }
