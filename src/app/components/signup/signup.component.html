@@ -14,6 +14,7 @@
             ><span class="text-danger fw-bold" *ngIf="showbtn">*</span> Full
             Name</label
           >
+
           <span class="required" *ngIf="showbtn"></span>
           <input
             type="text"
@@ -23,6 +24,17 @@
             formControlName="fullName"
             required
           />
+          <span
+            *ngIf="f['fullName'].errors?.['minlength'] && showbtn"
+            class="text-danger"
+          >
+            Full Name must be at least 3 characters.
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="f['fullName'].errors?.['required'] && showbtn"
+            >FullName is required</span
+          >
         </div>
 
         <div class="mb-3">
@@ -48,22 +60,13 @@
               (input)="formatPhone($event)"
               [maxlength]="selectedCountry.code === 'ke' ? 9 : 10"
             />
-          </div>
-          <!-- Country List/dropdown (shown on flag click) when showCountryList is false -->
-          <!-- <div class="country-list" *ngIf="showCountryList">
-            <div
-              class="country-option"
-              *ngFor="let country of countries"
-              (click)="selectCountry(country)"
+            <span
+              class="text-danger"
+              *ngIf="f['phone'].errors?.['required'] && showbtn"
+              >Phone is required</span
             >
-              <span [innerHTML]="country.flag"></span>
-              <span class="country-name">{{ country.name }}</span>
-              <span class="dial-code" formControlName="countryCode">{{
-                country.dialCode
-              }}</span>
-            </div>
           </div>
-        </div> -->
+
           <!-- Country List (shown on flag click) -->
           <div class="country-list" *ngIf="showCountryList">
             <div
@@ -87,6 +90,11 @@
             formControlName="password"
             required
           />
+          <span
+            class="text-danger"
+            *ngIf="f['password'].errors?.['required'] && showbtn"
+            >Password is required</span
+          >
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword2" class="form-label"
@@ -97,29 +105,30 @@
             class="form-control input-bg"
             id="exampleInputPassword2"
             formControlName="confirmPassword"
-            required
           />
-          <div
+          <span
             class="text-danger"
-            *ngIf="
-              !signupForm.value.confirmPassword.valid && signupForm.touched
-            "
+            *ngIf="f['confirmPassword'].errors?.['required'] && showbtn"
+            >Password is required</span
           >
-            password is required
-          </div>
         </div>
-
+        <!-- the spinner class will only be shown when isOnloading is set to true,
+that is when processng user request of logging in -->
         <button
           type="submit"
           class="btn btn-primary loginbtn"
           (click)="validateForm()"
         >
-          Sign Up
+          <span *ngIf="!isLoading">Sign Up</span>
+          <span *ngIf="isLoading">
+            <span
+              class="spinner-border spinner-border-sm text-success"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            Processing...
+          </span>
         </button>
-        <p>Fullname: {{ signupForm.value.fullName }}</p>
-        <p>phone: {{ signupForm.value.phone }}</p>
-        <p>password: {{ signupForm.value.password }}</p>
-        <p>confirmPassword: {{ signupForm.value.confirmPassword }}</p>
       </div>
     </form>
   </div>

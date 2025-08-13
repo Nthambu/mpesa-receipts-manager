@@ -109,3 +109,36 @@ data binding to forms, you'll need to import the FormsModule.
 
 -The FormsModule has a directive called ngModel that binds
 the value of the input to a property in your class.
+
+## Using a "toast" notification service
+
+-- Using a "toast" notification service like PrimeNG's is far better than alert().
+
+## How It All Works Together: The Big Picture
+
+--The UI Component (<p-toast>): This is the visual element that actually appears on the screen. It lives somewhere in your app (usually the main app.component.html) and just waits quietly.
+--The Core Service (MessageService from PrimeNG): This is like a central post office. It doesn't display anything itself. Its only job is to receive messages (from anywhere in your app) and broadcast them.
+--The UI Listener (<p-toast>): The <p-toast> component is subscribed to the MessageService. When the service broadcasts a new message, the toast component catches it and displays it.
+--Your Wrapper Service (GlobalMessagingService): This is a brilliant piece of design. Instead of every component needing to know the specific details of PrimeNG's MessageService, they just talk to your simple, clean GlobalMessagingService. This makes your code easier to read and maintain.
+--Your Component (SignupComponent): Your component calls a simple method on your wrapper service (e.g., displayErrorMessage(...)), and the magic happens automatically.
+
+## Step-by-Step Implementation
+
+Step 1: Install PrimeNG
+First, you need to add the PrimeNG library to your project.
+code
+Bash
+
+# Install PrimeNG library
+
+npm install primeng
+
+# Install PrimeNG icons
+
+npm install primeicons
+
+## Step 2: Add PrimeNG CSS to angular.json
+
+--For the toast to look right, you need to include its CSS. Open your angular.json file and add the following lines to the styles array.
+
+## Bootstrap “spinners” can be used to show the loading state in your projects.
